@@ -13,6 +13,8 @@ package org.disk.frame.exception;
  */
 public class UtilsException extends DiskFrameException{
 
+    private static final long serialVersionUID = -6950375504173940213L;
+
     public UtilsException(String message) {
         super(message);
     }

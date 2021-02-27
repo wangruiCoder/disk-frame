@@ -11,7 +11,13 @@ package org.disk.frame.result;
  * @author kyrie 2020/11/22 12:52 下午
  * @since jdk1.8
  */
-public class SuccessResult<T> extends AbstractResult<T>{
+public class SuccessResult<T> extends GeneralResult<T>{
+    private static final long serialVersionUID = 8407941602989138933L;
+
+    public SuccessResult() {
+        super();
+    }
+
     /**
      * 成功时返回数据
      * @param data 数据

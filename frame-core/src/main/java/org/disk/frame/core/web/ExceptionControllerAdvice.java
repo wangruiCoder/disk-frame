@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * 类描述
- * <p>详细描述</p>
+ * 统一异常处理器
+ * <p>统一异常处理器,框架层面发生异常后对异常结果进行捕获转换</p>
  *
  * @author kyrie 2020/11/22 3:38 下午
  * @since jdk1.8
@@ -36,9 +36,8 @@ public class ExceptionControllerAdvice {
         //获取错误提示语
         ObjectError objectError = e.getBindingResult().getAllErrors().get(0);
 
-        FailedResult failedResult = new FailedResult(ResultCode.PARAM_ERROR.getCode(),fieldError.getField()+" "+objectError.getDefaultMessage());
         //错误提示信息进行返回
-        return failedResult;
+        return new FailedResult<>(ResultCode.PARAM_ERROR.getCode(),fieldError.getField()+" "+objectError.getDefaultMessage());
     }
 
     /**
@@ -48,8 +47,7 @@ public class ExceptionControllerAdvice {
      */
     @ExceptionHandler(DiskFrameException.class)
     public AbstractResult DiskFrameExceptionHandler(DiskFrameException e){
-        FailedResult failedResult = new FailedResult(ResultCode.ERROR.getCode(), e.getMessage());
-        return failedResult;
+        return new FailedResult<>(ResultCode.ERROR.getCode(), e.getMessage());
     }
 
     /**
@@ -60,8 +58,7 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(RuntimeException.class)
     public AbstractResult RuntimeExceptionHandler(RuntimeException e){
         System.out.println(e.toString());
-        FailedResult failedResult = new FailedResult(ResultCode.ERROR.getCode(), ResultCode.ERROR.getDesc());
-        return failedResult;
+        return new FailedResult<>(ResultCode.ERROR.getCode(), ResultCode.ERROR.getDesc());
     }
 
 }

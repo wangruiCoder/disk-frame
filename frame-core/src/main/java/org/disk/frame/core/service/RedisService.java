@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
  * @author kyrie 2020/11/22 6:08 下午
  * @since jdk1.8
  */
-@Service(value = "redisService")
+//@Service(value = "redisService")
 public class RedisService {
 
     private final RedisTemplate<String,Object> redisTemplate;

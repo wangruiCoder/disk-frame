@@ -12,6 +12,7 @@ package org.disk.frame.exception;
  */
 public abstract class DiskFrameException extends RuntimeException{
 
+    private static final long serialVersionUID = 1486531283081279236L;
     private String message;
     private Throwable cause;
 

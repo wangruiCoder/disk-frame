@@ -13,11 +13,17 @@ package org.disk.frame.exception;
  */
 public class FrameException extends DiskFrameException{
 
+    private static final long serialVersionUID = -6982218853914772643L;
+
     public FrameException(String message) {
         super(message);
     }
 
     public FrameException(String message, Throwable cause) {
         super(message, cause);
+    }
+
+    public FrameException(Throwable throwable){
+        super(throwable);
     }
 }
