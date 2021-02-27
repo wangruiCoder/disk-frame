@@ -6,8 +6,6 @@ package org.disk.frame.result;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.io.Serializable;
-
 /**
  * 普通的返回结果类模版
  * <p>常用属性code,msg,data.如果这些属性不够用可以继承当前类在子类中继续扩展</p>
