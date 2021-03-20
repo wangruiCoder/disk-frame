@@ -3,4 +3,28 @@ server:
 spring:
   application:
     name: APPS
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 
+  #------------上传文件限制--------------#
+  servlet:
+    multipart:
+      #单个文件大小
+      max-file-size: 1MB
+      #一个请求中数据总大小
+      max-request-size: 10MB
+
+disk:
+  frame:
+    file-upload-path: /Users/wangrui/Documents/workspace/rootdir
+    #文件格式合法性校验,校验文件原始的MiMeType
+    allow-file-prefixAndMiMe: {jpg: 'image/jpeg',
+                               jpeg: 'image/jpeg',
+                               png: 'image/jpeg',
+                               svg: 'image/svg+xml',
+                               docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                               doc: 'application/msword',
+                               txt: 'text/plain',xls: 'application/vnd.ms-excel',}

@@ -43,6 +43,7 @@
 		<spring-cloud.version>2020.0.0-M5</spring-cloud.version>
 		<mybatis.version>2.1.4</mybatis.version>
 		<commons-beanutils>1.9.3</commons-beanutils>
+		<tika.version>1.25</tika.version>
 	</properties>
 
 	<dependencyManagement>
@@ -73,6 +74,12 @@
 				<artifactId>frame-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>${tika.version}</version>
+			</dependency>
+			<!-- spring boot 配置类 -->
 		</dependencies>
 	</dependencyManagement>
 
