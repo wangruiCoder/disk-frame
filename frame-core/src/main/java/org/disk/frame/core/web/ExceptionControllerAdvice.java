@@ -8,11 +8,14 @@ import org.disk.frame.exception.DiskFrameException;
 import org.disk.frame.result.AbstractResult;
 import org.disk.frame.result.FailedResult;
 import org.disk.frame.result.ResultCode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 /**
  * 统一异常处理器
@@ -24,8 +27,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 
+    @Autowired
+    private Environment environment;
+
     /**
-     * 参数异常捕获
+     * 表单入参异常捕获
      * @param e 参数异常
      * @return 错误信息
      */
@@ -57,7 +63,11 @@ public class ExceptionControllerAdvice {
      */
     @ExceptionHandler(RuntimeException.class)
     public AbstractResult RuntimeExceptionHandler(RuntimeException e){
-        System.out.println(e.toString());
+        //文件上传超大异常捕获
+        if (e instanceof MaxUploadSizeExceededException){
+            return new FailedResult<>(ResultCode.ERROR.getCode(),"上传文件超过单个文件["+environment.getProperty("spring.servlet.multipart.max-file-size")+"]最大限制");
+        }
+
         return new FailedResult<>(ResultCode.ERROR.getCode(), ResultCode.ERROR.getDesc());
     }
 
