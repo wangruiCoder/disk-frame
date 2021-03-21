@@ -48,7 +48,7 @@ public class UploadService {
         //文件后缀验证
         this.validFilePrefix(filePrefix);
 
-        String mimeType = null;
+        String mimeType;
         try {
             mimeType = CheckFileUtils.mimeType(file.getInputStream());
         } catch (IOException e) {
